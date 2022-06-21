@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 export const Container = styled.header`
   display:flex;
   justify-content:space-between;
@@ -9,6 +11,9 @@ export const Container = styled.header`
   margin:auto;
   background-color:#030303;
 
+  h1{
+    padding-left:2vw;
+  }
 `;
 
 export const Menu = styled.nav`

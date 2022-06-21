@@ -30,6 +30,20 @@ export const SubContainer = styled.form`
   
 `;
 
+export const BtnADD = styled.button`
+    width:15vw;
+    height:7vh;
+    margin-top:2vh;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    transition: 1.5s cubic-bezier(1,.99,.02,.03);
+    &:hover{
+      background-color:#B22222;
+      cursor:pointer;
+    }
+`
+
 export const List = styled.div`
   width:80%;
   height:100%;

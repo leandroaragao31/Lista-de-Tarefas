@@ -1,21 +1,38 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import * as S from './styled.js';
 
+
 let corpo = document.body;
-corpo.style.background = '#aa7b5d';
+corpo.style.background = '#607B8B';
 corpo.style.color = '#FFFFFF';
 
 export default function Main() {
+  const taskInput = useRef(null);
   const [task, setTask] = useState('');
   const [list, setList] = useState([]);
+
+  useEffect(()=>{
+    taskInput.current.focus();
+ },[])
 
   const itemTask = {
     task: task,
     id: Date.now(),
   };
-
+ 
   const handleSubmit = (e) => {
     setTask(e.preventDefault());
+    const local = e.target.elements.local.value;
+    localStorage.setItem('itemTask', local);
+    location.reload(false);
+  };
+
+  const onChange = event => {
+    const local = localStorage.getItem('itemTask')
+    if(local !== null){
+      setTask(event.target.value);
+      inputEl.current.focus();
+    }
   };
 
   const remove = (id) => {
@@ -26,25 +43,21 @@ export default function Main() {
   };
 
   const handleClick = () => {
-    setList([...list, itemTask]), setTask('');
+    if(task !== undefined){
+      setList([...list, itemTask]), setTask('');
+      //console.log(task)
+     }
+    
   };
+  
+
+ 
 
   return (
     <S.Container>
-      <S.SubContainer
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <input
-          type="text"
-          value={task}
-          placeholder="digite aqui sua tarefa"
-          onChange={(e) => {
-            setTask(e.target.value);
-          }}
-        />
-        <button onClick={handleClick}>Add Task</button>
+      <S.SubContainer onSubmit={(e) => {handleSubmit(e)}}>
+        <input ref={taskInput} type="text" value={task} placeholder="digite aqui sua tarefa" onChange={onChange}/>
+        <S.BtnADD onClick={handleClick}>Add Task</S.BtnADD>
         <S.List>
           {list.map((item, index) => (
             <>

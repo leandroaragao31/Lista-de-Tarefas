@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Components/Header/header.js';
 import Main from './Components/Main/main.js';
-import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
