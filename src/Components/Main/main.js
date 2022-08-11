@@ -13,6 +13,10 @@ export default function Main() {
 
   useEffect(()=>{
     taskInput.current.focus();
+    if(list !== ""){
+      localStorage.getItem('itemTask')
+      /* location.reload(false) */
+    }
  },[])
 
   const itemTask = {
@@ -27,11 +31,10 @@ export default function Main() {
     location.reload(false);
   };
 
-  const onChange = event => {
-    const local = localStorage.getItem('itemTask')
-    if(local !== null){
+  const onChange = event => { 
+    if(taskInput !== null ){
       setTask(event.target.value);
-      inputEl.current.focus();
+      taskInput.current.focus();
     }
   };
 
@@ -43,15 +46,14 @@ export default function Main() {
   };
 
   const handleClick = () => {
+    
     if(task !== undefined){
       setList([...list, itemTask]), setTask('');
-      //console.log(task)
+      console.table(task)
      }
     
   };
   
-
- 
 
   return (
     <S.Container>
@@ -72,3 +74,35 @@ export default function Main() {
     </S.Container>
   );
 }
+
+
+/* 
+  principio do cronometro
+import React, { useState, useEffect, useRef }  from 'react'
+
+export default function TesteAulaRef() {
+
+const [numero, setNumero] = useState(0)
+
+const handleBtn = useRef()
+
+const Start =()=>{
+  setInterval(()=>{
+    setNumero(c => c < 5? c+1:c)
+  }, 1000)
+}
+
+useEffect(()=>{
+  if(numero === 5){
+    handleBtn.current.style.backgroundColor = 'blue'
+  }
+}, [numero])
+  return (
+    <div>
+   <h1>{numero}</h1>
+   <button ref={handleBtn} onClick={()=>{Start()}}>+</button>
+    </div>
+  )
+}
+} */
+

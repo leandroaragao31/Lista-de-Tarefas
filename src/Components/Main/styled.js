@@ -47,10 +47,12 @@ export const BtnADD = styled.button`
 export const List = styled.div`
   width:80%;
   height:100%;
+  
 
 ul{
   display:flex;
   justify-content:space-evenly;
+  border-bottom:solid 1px white;
 }
 
 
@@ -58,6 +60,7 @@ ul{
     list-style:square;
     text-transform:capitalize;
     font-size:2rem;
+    
   }
 
   button{
